@@ -1,0 +1,13 @@
+.addFood{
+    display: flex;
+    justify-content: center;
+}
+
+.addFood button{
+    border-radius: 0%;
+}
+
+.payFood{
+    display: flex;
+    justify-content: center;
+}
