@@ -1,59 +1,64 @@
 let productos = [
-    { nombre: "Pollo con almendras", precio: 40000 },
-    { nombre: "Rollitos de primavera", precio: 35000 },
-    { nombre: "Ssam de panceta", precio: 18000 },
-    { nombre: "Caramelo Dalgona", precio: 15000 },
-    { nombre: "Botella de Sake", precio: 37000 },
+    { id: 1, nombre: "Pollo con almendras", precio: 40000 },
+    { id: 2, nombre: "Rollitos de primavera", precio: 35000 },
+    { id: 3, nombre: "Ssam de panceta", precio: 18000 },
+    { id: 4, nombre: "Caramelo Dalgona", precio: 15000 },
+    { id: 5, nombre: "Botella de Sake", precio: 37000 },
 ]
 
-let divProductos = document.querySelector('#iMenu')
-
-for (let x = 0; x < productos.length; x++)
-
-    divProductos.innerHTML += `
-<div class="row" style="display: flex; justify-content: center ; text-align: start">
-    <div class="col-6"> ${productos[x].nombre} </div>
-    <div class="col-6"> ${productos[x].precio} </div>
-</div>
+let divProductos = document.querySelector('#iFood')
+productos.forEach(comida => {
+divProductos.innerHTML += `
+<li class="list-group-item">${comida.nombre} - $: ${comida.precio}</li>
 `
+})
 
-let formularioMenu = document.querySelector("#addFood")
-formularioMenu.addEventListener('submit', (eventoPedido) => {
-    eventoPedido.preventDefault();
+let btnProductos = document.querySelector('#iaddFood')
+let menUsuario = []
 
-let total = 0
-let iPedido = []
-
-while(true) {
-    iAddFood = document.querySelector('#addFood')
-
-    if (iAddFood.document.querySelector('#payFood') === pagar)
-    break;
-}
-
-if(productos[iAddFood]) {
-    iPedido.push = [iAddFood]
-    Swal.fire({
-        title: 'Tu plato fue agregado',
-        icon: 'success',
-        iconColor: '#2bff00',
-        color: '#fff',
-        background: '#111',
-        confirmButtonText: '¡Vale!',
-        confirmButtonColor: '#1f911f',
+btnProductos.addEventListener("submit", (evento) => {
+    evento.preventDefault()
+    let solicitudComida = evento.target.platoUsuario.value
+    if (solicitudComida != "pagar") {
+        let validacionComida = productos.filter(plato => plato.nombre == solicitudComida)
+        menUsuario.push(validacionComida[0])
+        Swal.fire({
+            title: 'Tu plato fue agregado',
+            icon: 'success',
+            iconColor: '#2bff00',
+            color: '#fff',
+            background: '#111',
+            confirmButtonText: '¡Vale!',
+            confirmButtonColor: '#1f911f',
         })
         
-    total += iPedido[iAddFood]
-    
-} else {
-    Swal.fire({
-        title: 'Este playo no está en el menu, lo sentimos.',
-        icon: 'error',
-        iconColor: '#f60505',
-    })
-}
-
+    } else {
+        let precioTotal = 0
+        menUsuario.forEach(pedido => {
+            precioTotal = precioTotal + pedido.precio
+        });
+        document.querySelector("#payFood").innerHTML = `El precio a pagar es: $ ${precioTotal}`
+        menUsuario = []
+        console.log("precio total")
+    }
 })
+
+
+
+    // let validarComida = productos.filter(plato => plato.nombre == solicitudComida)
+    // menUsuario.push(validarComida[0]);
+    // Swal.fire({
+    //     title: 'Tu plato fue agregado',
+    //     icon: 'success',
+    //     iconColor: '#2bff00',
+    //     color: '#fff',
+    //     background: '#111',
+    //     confirmButtonText: '¡Vale!',
+    //     confirmButtonColor: '#1f911f',
+    // })
+
+
+
 
 //     let addComida = false;
 //     (!addComida('proMenu')) ? addComida = true : '';

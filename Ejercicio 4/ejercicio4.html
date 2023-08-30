@@ -24,20 +24,12 @@
                     </strong>
                 </div>
             </div>
-            <div class="row" style="display: flex; justify-content: center ; text-align: start" id="iMenu">
-                <div class="col-6"></div>
-                <div class="col-6"></div>
-            </div>
-        </div>
-        <form class="row container iFood">
-            <div class="input-group col-12 mt-4 mb-3">
-                <input type="text" style="border-radius: 2px;" id="addFood" placeholder="¿Qué deseas comer?">
-                <button class="btn btn-outline-secondary border-2" type="submit" id="button-addon2">Agregar</button>
-            </div>
-            <div class="col mb-3 payFood">
-                <input type="text" id="payFood" placeholder="¿Pagamos?">
-            </div>
-        </form>
+            <ul class="list-group" id="iFood"></ul>
+            <form id="iaddFood">
+                <input class="form-control" id="platoUsuario" placeholder="¿Que deseas comer?" type="text">
+                <button type="submit" class="btn btn-dark">Agregar</button>
+                <h3 id="payFood"></h3>
+            </form>
     </section>
 
 
